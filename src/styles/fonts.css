@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #B59A5D transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #B59A5D;
+  border-radius: 3px;
+}
+
+::selection {
+  background: rgba(181, 154, 93, 0.3);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0A0A0B;
+  color: #F5F5F7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Schibsted Grotesk', sans-serif;
+}
