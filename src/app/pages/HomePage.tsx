@@ -242,9 +242,9 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
           >
-            <span style={{ color: TEXT }}>L'Art de la Couverture</span>
+            <span style={{ color: TEXT }}>Mayer Couvreur</span>
             <br />
-            <GoldText>d'Excellence</GoldText>
+            <GoldText>Entreprise de couverture à Pacy sur Eure</GoldText>
           </motion.h1>
 
           <motion.p
