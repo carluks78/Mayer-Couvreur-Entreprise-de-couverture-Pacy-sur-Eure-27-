@@ -56,13 +56,15 @@ function AnimatedCounter({ target, suffix = "", prefix = "" }: { target: number;
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    // Délai pour laisser le temps au hero de s'animer (0.5s = après l'animation initiale)
+    let timer: ReturnType<typeof setInterval>;
+
     const delay = setTimeout(() => {
       const duration = 2000;
       const steps = 60;
       const increment = target / steps;
       let current = 0;
-      const timer = setInterval(() => {
+
+      timer = setInterval(() => {
         current += increment;
         if (current >= target) {
           setCount(target);
@@ -71,10 +73,12 @@ function AnimatedCounter({ target, suffix = "", prefix = "" }: { target: number;
           setCount(Math.floor(current));
         }
       }, duration / steps);
-      return () => clearInterval(timer);
-    }, 800); // démarre 800ms après le mount, quand le hero est visible
+    }, 800);
 
-    return () => clearTimeout(delay);
+    return () => {
+      clearTimeout(delay);
+      clearInterval(timer);
+    };
   }, [target]);
 
   return <span>{prefix}{count}{suffix}</span>;
