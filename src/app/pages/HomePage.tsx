@@ -54,28 +54,30 @@ function FadeInUp({ children, delay = 0, className = "" }: { children: ReactNode
 
 function AnimatedCounter({ target, suffix = "", prefix = "" }: { target: number; suffix?: string; prefix?: string }) {
   const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (!isInView) return;
-    const duration = 2000;
-    const steps = 60;
-    const increment = target / steps;
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, duration / steps);
-    return () => clearInterval(timer);
-  }, [isInView, target]);
+    // Délai pour laisser le temps au hero de s'animer (0.5s = après l'animation initiale)
+    const delay = setTimeout(() => {
+      const duration = 2000;
+      const steps = 60;
+      const increment = target / steps;
+      let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          setCount(target);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(current));
+        }
+      }, duration / steps);
+      return () => clearInterval(timer);
+    }, 800); // démarre 800ms après le mount, quand le hero est visible
 
-  return <span ref={ref}>{prefix}{count}{suffix}</span>;
+    return () => clearTimeout(delay);
+  }, [target]);
+
+  return <span>{prefix}{count}{suffix}</span>;
 }
 
 const servicesData = [
@@ -220,7 +222,8 @@ export default function HomePage() {
   return (
     <div style={{ backgroundColor: BG, color: TEXT }}>
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center">
+{/* overflow-hidden retiré ici */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80')" }}
