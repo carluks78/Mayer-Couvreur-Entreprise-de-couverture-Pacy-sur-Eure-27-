@@ -38,7 +38,7 @@ export default function Footer() {
               Artisans couvreurs certifiés depuis plus de 15 ans à Pacy-sur-Eure, Eure (27), Normandie.
             </p>
             <div className="mt-4 flex gap-3 flex-wrap">
-              {['Garantie Décennale', 'RGE', 'Qualibat'].map((cert) => (
+              {['Garantie Décennale', 'Qualibat'].map((cert) => (
                 <span key={cert} className="text-xs px-2 py-1 rounded" style={{ backgroundColor: 'rgba(181,154,93,0.12)', color: '#B59A5D', border: '1px solid rgba(181,154,93,0.2)' }}>
                   {cert}
                 </span>
